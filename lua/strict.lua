@@ -9,7 +9,9 @@ function strict_read(table, key)
 end
 
 function strict_write(table, key, value)
-  if _private[key] then
+  if value == nil then
+    _private[key] = nil
+  elseif _private[key] then
     error("Duplicate key: " .. key)
   else
     _private[key] = value
